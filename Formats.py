@@ -1,0 +1,47 @@
+#formats for the messages sent to the screen
+fmt ={
+    "TEXT"       : b"{elem_name}.txt=\"{data}\"\xFF\xFF\xFF",
+    "GTEXT"      : b"{page}.{elem_name}.txt=\"{data}\"\xFF\xFF\xFF",
+    "PRINTS"     : b"prints {elem_name}.txt,0\xFF\xFF\xFF",
+    "TEXT_COLOR" : b"{page}.{elem_name}.pco={color}\xFF\xFF\xFF",
+    "BG_COLOR"   : b"{elem_name}.bco={color}\xFF\xFF\xFF",
+    "NUM"        : b"{elem_name}.val={data}\xFF\xFF\xFF",
+    "GRAPH"      : b"add {elem},{ch},{value}\xFF\xFF\xFF",
+    "BRIGHTNESS" : b"dims={brightness}\xff\xff\xff",
+    "STATUS"     : b"sleep={status}\xff\xff\xff",
+    "RESET"      : b"rest\xFF\xFF\xFF",
+    "ERR"        : b"xstr 0,0,200,100,0,BLACK,GRAY,0,0,1,\"{err_msg} {exception}\"\xff\xff\xff",
+    "PAGE"       : b"page {page}\xff\xff\xff",
+    "BAR"        : b"{page}.{elem_name}.val={data}\xFF\xFF\xFF",
+    "BARO"       : b"{elem_name}.val={data}\xFF\xFF\xFF",
+    "DISABL"     : b"tsw {elem_name},0\xFF\xFF\xFF",
+    "ENABLE"     : b"tsw {elem_name},1\xFF\xFF\xFF",
+    "GET"        : b"get {elem_name}\xFF\xFF\xFF",
+    "VIS"        : b"vis {elem_name},{data}\xFF\xFF\xFF",
+    "REPT"       : b"rept {addr},{qty}\xFF\xFF\xFF",
+    "REFRESH"    : b"ref {elem_name}\xFF\xFF\xFF",
+    "GLOBAL"     : b"{name}={value}\xFF\xFF\xFF",
+    "TOUCH"      : b"click {elem_name},{state}\xFF\xFF\xFF",
+    "ADDLINE"    : b""
+}
+#Error codes
+err ={
+    "x00" : "Invalid Instruction",    
+    "x01" : "Instruction Successful",
+    "x02" : "Invalid Component ID",
+    "x03" : "Invalid Page ID",
+    "x04" : "Invalid Picture ID",
+    "x05" : "Invalid Font ID",
+    "x06" : "Invalid File Operation",
+    "x09" : "Invalid CRC",
+    "x11" : "Invalid Baud rate Setting",
+    "x12" : "Invalid Waveform ID or Channel #",
+    "x1a" : "Invalid Variable name or attribute",
+    "x1b" : "Invalid Variable Operation",
+    "x1c" : "Assignment failed to assign",
+    "x1d" : "EEPROM Operation failed",
+    "x1e" : "Invalid Quantity of Parameters",
+    "x1f" : "IO Operation failed",
+    "x20" : "Escape Character Invalid",
+    "x23" : "Variable name too long"
+}
