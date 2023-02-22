@@ -68,7 +68,7 @@ class SSC:
     def zero(self):
         self.zero_offset = 0
         temp_unit = self.unit
-        self.change_unit("PSI")
+        self.change_unit("psi")
         i = 0
         zero = []
         while i < 20:
@@ -82,7 +82,7 @@ class SSC:
         temp_offset = self.zero_offset
         self.zero_offset = 0
         temp_unit = self.unit
-        self.change_unit("PSI")
+        self.change_unit("psi")
         i = 0
         zero = []
         while i < 20:

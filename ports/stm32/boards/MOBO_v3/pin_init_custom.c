@@ -13,9 +13,18 @@ void customPins(void)
     GPIO_InitOutput.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitOutput.Pull = GPIO_PULLUP;
 
+	GPIO_InitTypeDef GPIO_InitOutput2;
+    GPIO_InitOutput.Speed = GPIO_SPEED_HIGH;
+    GPIO_InitOutput.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitOutput.Pull = GPIO_PULLDOWN;
+
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
    	GPIO_InitOutput.Pin = GPIO_PIN_15;
    	HAL_GPIO_Init(GPIOA, &GPIO_InitOutput);
+
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+   	GPIO_InitOutput2.Pin = GPIO_PIN_8;
+   	HAL_GPIO_Init(GPIOA, &GPIO_InitOutput2);
 
    	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);
    	GPIO_InitOutput.Pin = GPIO_PIN_9;
