@@ -34,7 +34,7 @@ class SSC:
             machine.I2C(self.bus).readfrom_into(self.addr, block)
             self.digitalcount = (((block[0] & 0b00111111) << 8) | block[1])
             self.pressure = ((((self.digitalcount-self.outMin)*(self.Pmax-self.Pmin))/(self.outMax-self.outMin))+self.Pmin)
-            self.pressure = round((self.pressure), 4)
+            self.pressure = round((self.pressure + self.zero_offset), 4)
             self.lastVal = self.pressure
             return(self.pressure)
         except Exception as e:
