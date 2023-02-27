@@ -19,6 +19,8 @@ class frame():
 	def __init__(self, num, baud):
 		self.xbee = machine.UART(num, baud)
 
+	def deinit(self):
+		self.xbee.deinit()
 
 	def checksum(self, x):
 		added = 0

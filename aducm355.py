@@ -190,10 +190,10 @@ class Electrochem():
 
                 data = bytearray(param_len)
 
-                machine.I2C(2).writeto(self.addr, bytearray([param_addr]))
-                machine.I2C(2).readfrom_into(self.addr, data)
-                machine.I2C(2).readfrom_into(self.addr, data)
-                machine.I2C(2).readfrom_into(self.addr, data)
+                machine.I2C(1).writeto(self.addr, bytearray([param_addr]))
+                machine.I2C(1).readfrom_into(self.addr, data)
+                machine.I2C(1).readfrom_into(self.addr, data)
+                machine.I2C(1).readfrom_into(self.addr, data)
 
                 last_byte = (param_len-1)
                 first_byte = (param_len - param_len)
@@ -234,7 +234,7 @@ class Electrochem():
 
         for attempt in range(3):
 
-            sts = machine.I2C(2).writeto(self.addr, data)
+            sts = machine.I2C(1).writeto(self.addr, data)
 
             attempt += 1
         return sts
