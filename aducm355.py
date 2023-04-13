@@ -101,24 +101,24 @@ class Electrochem():
             print("Trying to connect to EC sensor...")
             sts  = int(self.read_param("get_status"))
         print("\n+------------ EC Sensor Connected! -------------+\n")
-        try:
-            d2 = self.read_param("read_vzero_voltage")
-            d3 = self.read_param("read_sensor_sens")
-            d4 = self.read_param("read_tia_gain")
-            d5 = self.read_param("read_rload")
-        except Exception as e:
-            print("Cannot initially read values: ", e)
-        try:
-            if(d2 != 1100):
-                self.write_param("set_vzero_voltage", 1100)
-            if(d3 != 7000):
-                self.write_param("set_sensor_sens", 7000)
-            if(d4 != 1):
-                self.write_param("set_tia_gain", 1)
-            if(d5 != 1):
-                self.write_param("set_rload", 1)
-        except Exception as e:
-            print("Cannot initialize EC Values")
+        #try:
+        #    d2 = self.read_param("read_vzero_voltage")
+        #    d3 = self.read_param("read_sensor_sens")
+        #    d4 = self.read_param("read_tia_gain")
+        #    d5 = self.read_param("read_rload")
+        #except Exception as e:
+        #    print("Cannot initially read values: ", e)
+        #try:
+        #    if(d2 != 1100):
+        #        self.write_param("set_vzero_voltage", 1100)
+        #    if(d3 != 7000):
+        #        self.write_param("set_sensor_sens", 7000)
+        #    if(d4 != 1):
+        #        self.write_param("set_tia_gain", 1)
+        #    if(d5 != 1):
+        #        self.write_param("set_rload", 1)
+        #except Exception as e:
+        #    print("Cannot initialize EC Values")
 
         
 
@@ -190,10 +190,10 @@ class Electrochem():
 
                 data = bytearray(param_len)
 
-                machine.I2C(2).writeto(self.addr, bytearray([param_addr]))
-                machine.I2C(2).readfrom_into(self.addr, data)
-                machine.I2C(2).readfrom_into(self.addr, data)
-                machine.I2C(2).readfrom_into(self.addr, data)
+                machine.I2C(1).writeto(self.addr, bytearray([param_addr]))
+                machine.I2C(1).readfrom_into(self.addr, data)
+                machine.I2C(1).readfrom_into(self.addr, data)
+                machine.I2C(1).readfrom_into(self.addr, data)
 
                 last_byte = (param_len-1)
                 first_byte = (param_len - param_len)
@@ -234,7 +234,7 @@ class Electrochem():
 
         for attempt in range(3):
 
-            sts = machine.I2C(2).writeto(self.addr, data)
+            sts = machine.I2C(1).writeto(self.addr, data)
 
             attempt += 1
         return sts
@@ -253,7 +253,7 @@ class Electrochem():
             
             self.CO_unfiltered = int(self.raw_ppm)
 
-            return self.avgPPM
+            return self.avg_ppm
 
         except Exception as e:
             self.CO_filtered=-99
