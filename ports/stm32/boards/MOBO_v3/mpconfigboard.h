@@ -11,6 +11,7 @@
 #define MICROPY_HW_ENABLE_DAC       (0)
 #define MICROPY_HW_ENABLE_USB       (1)
 #define MICROPY_HW_ENABLE_SDCARD    (0)
+#define MICROPY_PY_DEFLATE_COMPRESS (1)
 
 // HSE is 12MHz
 #define MICROPY_HW_CLK_PLLM (6)

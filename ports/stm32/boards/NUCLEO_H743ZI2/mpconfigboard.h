@@ -11,10 +11,7 @@
 // JP1 STLNK_RST will disable the incoming 8MHz clock
 // since it is derived from the STLINK's MCO output
 #undef MICROPY_HW_CLK_USE_BYPASS
-#define MICROPY_HW_CLK_USE_BYPASS   (1)
-
-#undef MICROPY_HW_LED2
-#define MICROPY_HW_LED2             (pin_E1)    // yellow
+#define MICROPY_HW_CLK_USE_BYPASS   (0)
 
 // only when mboot is used
 // Define the user button for entering mboot

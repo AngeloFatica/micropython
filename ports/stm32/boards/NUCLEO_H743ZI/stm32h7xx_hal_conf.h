@@ -11,8 +11,8 @@
 #define EXTERNAL_CLOCK_VALUE (12288000)
 
 // Oscillator timeouts in ms
-#define HSE_STARTUP_TIMEOUT (5000)
-#define LSE_STARTUP_TIMEOUT (5000)
+#define HSE_STARTUP_TIMEOUT (500)
+#define LSE_STARTUP_TIMEOUT (500)
 
 #include "boards/stm32h7xx_hal_conf_base.h"
 
