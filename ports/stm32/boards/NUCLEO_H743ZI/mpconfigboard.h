@@ -67,6 +67,10 @@ void NUCLEO_H743ZI_board_early_init(void);
 #define MICROPY_HW_SPI1_SCK         (pin_A5)
 #define MICROPY_HW_SPI1_MISO        (pin_A6)
 #define MICROPY_HW_SPI1_MOSI        (pin_D7)
+#define MICROPY_HW_SPI4_NSS         (pin_E4)
+#define MICROPY_HW_SPI4_SCK         (pin_E2)
+#define MICROPY_HW_SPI4_MISO        (pin_E5)
+#define MICROPY_HW_SPI4_MOSI        (pin_E6)
 
 // USRSW is pulled low. Pressing the button makes the input go high.
 //#define MICROPY_HW_USRSW_PIN        (pin_C13)
