@@ -32,6 +32,11 @@
 #include "py/runtime.h"
 #include "py/mphal.h"
 
+#include "py/mpconfig.h"
+#include "py/obj.h"
+#include "py/objstr.h"
+#include "eth.h"
+
 #if MICROPY_PY_NETWORK
 
 #include "shared/netutils/netutils.h"
@@ -59,6 +64,26 @@ char mod_network_country_code[2] = "XX";
 char mod_network_hostname_data[MICROPY_PY_NETWORK_HOSTNAME_MAX_LEN + 1] = MICROPY_PY_NETWORK_HOSTNAME_DEFAULT;
 
 #ifdef MICROPY_PORT_NETWORK_INTERFACES
+
+void eth_set_mac_hwaddr(const uint8_t mac[6]);
+
+extern eth_t eth_instance;
+
+static mp_obj_t eth_set_mac(mp_obj_t mac_in) {
+    mp_buffer_info_t bufinfo;
+    mp_get_buffer_raise(mac_in, &bufinfo, MP_BUFFER_READ);
+
+    if (bufinfo.len != 6) {
+        mp_raise_ValueError(MP_ERROR_TEXT("MAC must be 6 bytes"));
+    }
+
+    // call eth.c helper that copies into netif and programs ETH registers
+    eth_set_mac_hwaddr((const uint8_t *)bufinfo.buf);
+
+    return mp_const_none;
+}
+static MP_DEFINE_CONST_FUN_OBJ_1(eth_set_mac_obj, eth_set_mac);
+
 
 void mod_network_init(void) {
     mp_obj_list_init(&MP_STATE_PORT(mod_network_nic_list), 0);
@@ -146,6 +171,7 @@ MP_DEFINE_CONST_FUN_OBJ_KW(mod_network_ipconfig_obj, 0, mod_network_ipconfig);
 #endif
 
 static const mp_rom_map_elem_t mp_module_network_globals_table[] = {
+    { MP_ROM_QSTR(MP_QSTR_eth_set_mac), MP_ROM_PTR(&eth_set_mac_obj) }, //angelo added
     { MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_network) },
     { MP_ROM_QSTR(MP_QSTR_country), MP_ROM_PTR(&mod_network_country_obj) },
     { MP_ROM_QSTR(MP_QSTR_hostname), MP_ROM_PTR(&mod_network_hostname_obj) },
